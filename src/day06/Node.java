@@ -1,4 +1,4 @@
-package day5;
+package day06;
 
 public class Node {
 	int data;

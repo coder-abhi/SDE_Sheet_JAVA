@@ -1,4 +1,4 @@
-package day6;
+package day06;
 
 public class NodeGen<T> {
 	T data;

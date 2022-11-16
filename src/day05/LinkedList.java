@@ -1,11 +1,11 @@
-package day6;
+package day05;
 
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class LinkedList {
-	public Node head;
+	Node head;
 	public LinkedList() {
 		head = null;
 	}
@@ -97,6 +97,53 @@ public class LinkedList {
 		for(int ele : arr) addAtRear(ele);
 	}
 	
-
+	public void sortedMerge(LinkedList list) {
+		Node listCurr = list.head;
+		while(listCurr != null) {
+			add(listCurr.data);
+			listCurr = listCurr.next;
+		}
+	}
+	public void add(int element) {
+		Node newElement = new Node(element);
+		
+		// if list is empty - we will directly add element
+		if(head == null) {
+			head = newElement;
+			return;
+		}
+		// if new element is less than first element then we add it at Front
+		if(element < head.data ) {
+			newElement.next = head;
+			head = newElement;
+			return;
+		}
+		
+		Node prev = null;
+		Node currentNode = head;
+		//traversing till end of list && new Element is less than currend data
+		while(currentNode != null && currentNode.data <= element) {
+			prev = currentNode;
+			currentNode = currentNode.next;
+		}
+		
+		// adding element before current
+		newElement.next = currentNode;
+		prev.next = newElement;
+	}
+	
+	// Removing Nth element from last
+	public void removeLastNth(int index) {
+		Node slow = head;
+		Node fast = head;
+		
+		for(int i = 0; i<index ; i++) fast = fast.next;
+		
+		while(fast.next!=null) {
+			slow = slow.next;
+			fast = fast.next;
+		}
+		slow.next = slow.next.next;
+	}
 			
 }
